@@ -1,0 +1,130 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffffff;
+    color: #246FFF;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+.title{
+    margin-left: 150px;
+    font-size: 40px;
+}
+.subtitle{
+    margin-left: -420px;
+    margin-top:60px;
+}
+nav ul {
+    background-color: #C5F2FC;
+    padding: 15px;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+nav ul li{
+    background-color: #7CE0FF;
+    border-radius: 20px;
+    width: 65px;
+    height: 35px;
+    text-align: center;
+    font-size: 20px;
+}
+.list{
+    width: 50px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+    max-width: 1200px; /* Limits the width of the grid container */
+    margin: auto; /* Centers the grid in the middle of the page */
+}
+
+.restaurant {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Ensures content is laid out vertically */
+}
+
+.restaurant img {
+    width: 100%; /* Ensures the image takes up the full width of its container */
+    height: 200px; /* Sets a fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+    transition: transform 0.3s ease;
+}
+.restaurant img:hover {
+    transform: scale(1.1); /* Scales the image up by 10% on hover */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+  }
+.info {
+    padding: 10px;
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+    .restaurant-grid {
+        grid-template-columns: 1fr; /* Adjusts to 1 column on smaller screens */
+    }
+}
+
+  #map-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    align-items: center;
+  }
+ 
+    #map {
+        width: 80%;
+        height: 80%;
+        margin: 5% auto;
+      }
+  
+  
+  #map-quit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+  .invisible {
+    display: none;
+  }
+  .hidden {
+    display: none;
+  }

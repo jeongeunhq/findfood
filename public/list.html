@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경맛추</title>
+  <link rel="stylesheet" href="css/list.css">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4f4bd21bfdfe9e727a6540e7f7478334&libraries=services"></script>
+  <script src="map.js" defer></script>
+  <script src="list.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1><a href="main.html">ㄱㅁㅊ</a></h1>
+    <h1 class="title"><a href="main.html">경맛추</a></h1>
+    <small class="subtitle">경기대 NO.1 맛집 추천 웹서비스</small>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showRestaurantsByCategory('korean')">한식</a></li>
+      <li><a href="#" onclick="showRestaurantsByCategory('japanese')">일식</a></li>
+      <li><a href="#" onclick="showRestaurantsByCategory('meat')">고기</a></li>
+      <li><a href="#" onclick="showRestaurantsByCategory('pub')">술집</a></li>
+      <li><a href="#" onclick="showRestaurantsByCategory('cafe')">카페</a></li>
+    </ul>
+  </nav>
+  <main>
+    <div id="restaurant-container">
+      <!-- 한식 식당 목록 -->
+      <div class="restaurant-grid" id="korean-restaurants">
+        <div class="restaurant">
+          <img src="image/kre/jeong.png" alt="대낚식당" onclick="showMap('대낚식당', '이의동 1261-10')">
+          <div class="info">
+            <h3>대낚식당</h3>
+            <p>주소: 경기 수원시 영통구 대학1로50번길 21 1층</p>
+            <p>평점: 4.39(735) 생활의달인 665회 대창덮밥 달인 </p>
+            <p>영업시간: 11:00-22:00</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/kre/ji.png" alt="지씨네만두" onclick="showMap('지씨네만두', '경기도 수원시 장안구 연무동 230-32')">
+          <div class="info">
+            <h3>지씨네만두</h3>
+            <p>주소: 경기 수원시 장안구 연무로 42-1 지씨네만두</p>
+            <p>평점: 4.39(735) 피가 얇고 맛잇음. 쫄면도 추천 </p>
+            <p>영업시간: 9:30-21:00</p>
+            <p>일,월 휴무</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/kre/neul.png" alt="늘이맛콩나물국밥국수" onclick="showMap('늘이맛콩나물국밥국수', '이의동 1258-4')">
+          <div class="info">
+            <h3>늘이맛콩나물국밥국수</h3>
+            <p>주소: 경기 수원시 영통구 대학로 34 캠퍼스프라자 106호</p>
+            <p>평점:4.7(283) 가성비가 좋고 국밥,비빕밥이 맛있음. </p>
+            <p>영업시간 7:00-22:00</p>
+            <p>일요일 휴무</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/kre/gucksu.png" alt="국수집" onclick="showMap('국수집', '연무동 24-1')">
+          <div class="info">
+            <h3>국수집</h3>
+            <p>주소: 경기 수원시 장안구 창훈로66번길 16-14 신라족발</p>
+            <p>평점: 4.43(4.5) 칼국수, 국수가 맛있는 가성비 국숫집</p>
+            <p>영업시간 11:00-17:00 </p>
+            <p>일요일 휴무, 육수 소진 시 조기마감 </p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/kre/seok.png" alt="석기정" onclick="showMap('석기정 돌솥 부대찌개', '경기도 수원시 영통구 이의동 1258-4 ')">
+          <div class="info">
+            <h3>석기정 돌솥 부대찌개 </h3>
+            <p>주소: 경기 수원시 영통구 대학로 34</p>
+            <p>평점: 4.2(212) 곱창 부대찌개가 고소함</p>
+            <p>영업시간 11:00-22:00</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/kre/leehan.png" alt="이한부대찌개닭개장" onclick="showMap('이한부대찌개닭개장', '이의동 1260-10')">
+          <div class="info">
+            <h3>이한부대찌개닭개장</h3>
+            <p>경기 수원시 영통구 대학1로 42</p>
+            <p>평점: 4.34(343) 콩불, 닭불 맛집 가성비짱 </p>
+            <p>영업시간 10:00-22:00</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 일식 식당 목록 -->
+      <div class="restaurant-grid hidden" id="japanese-restaurants">
+        <div class="restaurant">
+          <img src="image/jre/hurato.png" alt="후라토" onclick="showMap('후라토', '이의동 1332')">
+          <div class="info">
+            <h3>후라토식당</h3>
+            <p>주소: 경기 수원시 영통구 센트럴타운로 85 지1층 cb19, 20호</p>
+            <p>평점: 4.58(1751) 광교중앙역 규카츠, 오므라이스 맛집 주차 가능 </p>
+            <p>영업시간 11:30-22:00 (21:00 라스트오더)</p>
+            <p>15:00-17:00 브레이크타임</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/jre/izakaya.png" alt="이자카야연무" onclick="showMap('이자카야연무', '연무동 213-3')">
+          <div class="info">
+            <h3>이자카야연무</h3>
+            <p>주소: 경기 수원시 장안구 창훈로 61</p>
+            <p>평점: 4.7(234) 모든 메뉴가 맛있음. 대기가 있을 수 있음 </p>
+            <p>영업시간 18:00-2:00</p>
+            <p> 일요일 휴무</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/jre/dong.png" alt="동경당" onclick="showMap('동경당', '이의동 1262-14')">
+          <div class="info">
+            <h3>동경당</h3>
+            <p>주소: 경기도 수원시 대학1로54번길 11</p>
+            <p>평점:4.31(826) 메밀면이 특이하고 돈가스가 맛있음 </p>
+            <p>영업시간 11:00-21:00</p>
+            <p>일요일 휴무</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/jre/uncle.png" alt="엉클정 타코야끼연구소" onclick="showMap('엉클정 타코야끼연구소', '이의동 1257-3')">
+          <div class="info">
+            <h3>엉클정 타코야끼 연구소</h3>
+            <p>주소: 경경기 수원시 영통구 대학3로4번길 12 이스턴타워 110호</p>
+            <p>평점: 4.82(104) 타코야끼 안에 문어가 큼지막해서 맛있음. 타코야끼 맛이 다양해서 고르는 재미가 있고 다른 음식도 맛있음.</p>
+            <p>영업시간 14:30-24:00 </p>
+            <p>토,일 휴무 </p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/jre/genco.png" alt="겐코" onclick="showMap('겐코', '이의동 1258-4')">
+          <div class="info">
+            <h3>겐코쇼쿠도</h3>
+            <p>주소: 경기 수원시 영통구 대학로 34</p>
+            <p>평점: 4.37(482) 점심시간 웨이팅이 길어요. 맛있고 양이 푸짐함 </p>
+            <p>영업시간 10:00-21:00</p>
+          </div>
+        </div>
+        <div class="restaurant">
+          <img src="image/jre/rainbow.png" alt="레인보우돈까스"  onclick="showMap('레인보우돈까스', '연무동 8-6')">
+          <div class="info">
+            <h3>레인보우돈까스</h3>
+            <p>주소: 경기 수원시 장안구 창훈로60번길 36-2 104호</p>
+            <p>평점: 4.8(112) 돈가스가 부드럽고 맛있는 연무동 맛집 카레도 사장님이 직접 만드신다고 함 </p>
+            <p>영업시간 11:00-21:00 (20:30 라스트오더)</p>
+            <p>일요일 휴무, 토요일 19:30 라스트오더</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- 고기 식당 목록 -->
+      <div class="restaurant-grid hidden" id="meat-restaurants">
+          <div class="restaurant">
+              <img src="image/meat/gal.png" alt="갈풍집" onclick="showMap('갈풍집', '이의동 1266-7')">
+              <div class="info">
+                  <h3>갈풍집</h3>
+                  <p>주소: 경기도 수원시 영통구 이의동 1266-7</p>
+                  <p>평점: 4.33(614) 갈비살이 맛있음. </p>
+                  <p>영업시간 17:00-00:00</p>
+              </div>
+          </div>
+          <div class="restaurant">
+              <img src="image/meat/yeok.png" alt="역북집" onclick="showMap('역북집', '이의동 1262-4')">
+              <div class="info">
+                  <h3>역북집</h3>
+                  <p>주소: 경기도 수원시 영통구 대학1로58번길 14 역북집 경기대점 1층</p>
+                  <p>평점: 4.2(91) 맛있는 냉동 삼겹살집  </p>
+                  <p>영업시간 16:00-23:00 (22:30 라스트오더)</p>
+              </div>
+          </div>
+          <div class="restaurant">
+              <img src="image/meat/hwa.png" alt="화홍문갈비" onclick="showMap('화홍문갈비', '연무동 250-28')">
+              <div class="info">
+                  <h3>화홍문갈비</h3>
+                  <p>주소: 경기 수원시 장안구 월드컵로 438 화홍문갈비</p>
+                  <p>평점: 4.33(519) 자리가 넓고 깨끗함. 주차하기 편하고 고기의 질과 맛이 좋음. 다만 불친절하단 평이 있음 </p>
+                  <p>영업시간 11:00-22:00</p>
+              </div>
+          </div>
+          <div class="restaurant">
+              <img src="image/meat/sam.png" alt="삼육공" onclick="showMap('삼육공', '이의동 1310-2')">
+              <div class="info">
+                  <h3>삼육공</h3>
+                  <p>주소: 경기 수원시 영통구 센트럴파크로127번길 115-3 1층</p>
+                  <p>평점: 4.7(417) 광교카페거리 숙성돼지고기 맛집 사장님이 구워주심</p>
+                  <p>영업시간 17:00-00:00</p>
+                  <p>일요일은 24시간 영업</p>
+              </div>
+          </div>
+          <div class="restaurant">
+              <img src="image/meat/han.png" alt="한량" onclick="showMap('한량', '이의동 1330-1')">
+              <div class="info">
+                  <h3>한량</h3>
+                  <p>주소 : 경기 수원시 영통구 센트럴타운로 103 101, 102호</p>
+                  <p>평점: 4.6(433)기본으로 파스타가 나오는 냉동 삼겹살 맛집 파스타도 맛있고 사장님 센스가 좋음 </p>
+                  <p>영업시간 11:00-23:00 (22:30 라스트오더)</p>
+              </div>
+          </div>
+          <div class="restaurant">
+              <img src="image/meat/sang.png" alt="상원회관" onclick="showMap('상원회관', '이의동 1276-9')">
+              <div class="info">
+                  <h3>상원회관</h3>
+                  <p>주소: 경기 수원시 영통구 대학1로 12 1층 상원회관 광교한우본점</p>
+                  <p>평점: 4.92(1721)  고기 양도 많고 맛있음. 합리적인 가격으로 다양한 부위를 맛볼 수 있음. 밑반찬류까지 정갈함</p>
+                  <p>영업시간 11:30-22:00 (21:00 라스트오더)</p>
+              </div>
+          </div>
+      </div>
+      <!-- 술집 식당 목록 -->
+      <div class="restaurant-grid hidden" id="pub-restaurants">
+        <div class="restaurant">
+          <img src="image/pub/sang.png" alt="상전" onclick="showMap('상전', '연무동 7-3')">
+          <div class="info">
+              <h3>상전</h3>
+              <p>주소: 경기도 수원시 장안구 광교산로 138 2층</p>
+              <p>평점: 4.63(171) 맛있는 전과 함께 막걸리 한잔하기 좋은 식당 </p>
+              <p>영업시간 12:00-22:50</p>
+              <p>월요일 휴무</p>
+          </div>
+      </div>
+      <div class="restaurant">
+          <img src="image/pub/hannam.png" alt="한남동그집" onclick="showMap('한남동그집', '연무동 27-3')">
+          <div class="info">
+              <h3>한남동그집</h3>
+              <p>주소: 경기 수원시 장안구 창훈로66번길 2 1층</p>
+              <p>평점: 4.4(45) 김치찜, 김치찌개, 골뱅이쫄면 강추 양도 많고 맛있음. </p>
+              <p>영업시간 18:00-2:00</p>
+              <p>월요일 휴무</p>
+          </div>
+      </div>
+      <div class="restaurant">
+          <img src="image/pub/orakai.png" alt="오라카이" onclick="showMap('오라카이', '이의동 1270-7')">
+          <div class="info">
+              <h3>오라카이</h3>
+              <p>주소: 경기 수원시 영통구 대학1로8번길 54-1 1층</p>
+              <p>평점: 4.4(41)안주가 맛있고 가게가 넓어서 좋음 가성비도 굿</p>
+              <p>영업시간 15:00-3:00</p>
+              <p>일요일 휴무</p>
+          </div>
+      </div>
+      <div class="restaurant">
+          <img src="image/pub/godori.png" alt="고도리비스트로" onclick="showMap('고도리비스트로', '이의동 1261-8')">
+          <div class="info">
+              <h3>고도리비스트로</h3>
+              <p>주소: 경기 수원시 영통구 대학1로64번길 44 101호</p>
+              <p>평점: 4.78(199) 음식이 다양하고 맛있고 양이 많아요. </p>
+              <p>영업시간 16:30-01:00 </p>
+              <p>월요일 휴무. 재료소진시 조기마감</p>
+          </div>
+      </div>
+      <div class="restaurant">
+          <img src="image/pub/hura.png" alt="후라후라" onclick="showMap('후라후라', '이의동 1331')">
+          <div class="info">
+              <h3>심야식당 후라후라</h3>
+              <p>주소: 경기 수원시 영통구 센트럴타운로 107 월드스퀘어 1-120 심야식당 후라후라</p>
+              <p>평점: 4.61(443) 고기, 가라아게, 야끼소바가 맛있고 분위기가 좋음 </p>
+              <p>영업시간 17:00 - 24:00 (22:50 라스트오더)</p>
+          </div>
+      </div>
+      <div class="restaurant">
+          <img src="image/pub/kata.png" alt="카타르시스" onclick="showMap('카타르시스', '이의동 1276')">
+          <div class="info">
+              <h3>카타르시스</h3>
+              <p>주소: 경기 수원시 영통구 대학1로 16</p>
+              <p>평점: 4.66(271) 수육튀김이 독보적인 곳 음식이 나오는데 오래 걸린다는 평 </p>
+              <p>영업시간 17:00-02:00</p>
+              <p>토요일만 1시 마감, 일요일 휴무</p>
+          </div>
+      </div>
+    </div>
+    
+    <!-- 카페 식당 목록 -->
+    <div class="restaurant-grid hidden" id="cafe-restaurants">
+      <div class="restaurant">
+        <img src="image/cafe/owner.png" alt="오우너" onclick="showMap('오우너', '이의동 1254')">
+        <div class="info">
+            <h3>오우너</h3>
+            <p>주소: 경기 수원시 영통구 대학3로 7 나보나스퀘어 215호</p>
+            <p>평점: 4.78(554) 분위기가 좋고 쿠키, 커피가 맛있음. 콘센트 자리도 많아서 카공하기 좋은 경기대 근처 카페 </p>
+            <p>영업시간 11:30 - 20:00 (19:30 라스트오더)</p>
+            <p>일요일 휴무</p>
+        </div>
+    </div>
+    <div class="restaurant">
+        <img src="image/cafe/firstcrack.png" alt="퍼스트크랙" onclick="showMap('퍼스트크랙', '이의동 1352')">
+        <div class="info">
+            <h3>퍼스트크랙</h3>
+            <p>주소: 경기 수원시 영통구 에듀타운로 101 에듀하임1309 상가 102동 108호</p>
+            <p>평점: 4.71(296) 층고가 높고 야외테라스가 있음. 분위기가 차분해서공부하기 좋고 커피가 맛있는 광교중앙역카페 </p>
+            <p>영업시간 10:00-23:00</p>
+        </div>
+    </div>
+    <div class="restaurant">
+        <img src="image/cafe/shang.png" alt="샹델" onclick="showMap('샹델', '이의동 1248-2')">
+        <div class="info">
+            <h3>샹델</h3>
+            <p>주소: 경기 수원시 영통구 대학로 60 리치프라자3차 1층 134호</p>
+            <p>평점:4.7(337) 인테리어가 멋지고 커피가 맛있음. 광교역 5분거리</p>
+            <p>영업시간 08:00-19:00</p>
+            <p>주말 12시 오픈</p>
+        </div>
+    </div>
+    <div class="restaurant">
+        <img src="image/cafe/seoul.png" alt="서울제빵소" onclick="showMap('서울제빵소', '이의동 1203')">
+        <div class="info">
+            <h3>서울제빵소</h3>
+            <p>주소: 경기 수원시 영통구 웰빙타운로49번길 19 1층 서울제빵소</p>
+            <p>평점: 4.3(1681) 빵이 맛있고 한끼 식사로 좋은 샌드위치, 샐러드 판매. 넓고 청결해서 단체모임으로도 추천 </p>
+            <p>영업시간 09:00-20:00 </p>
+        </div>
+    </div>
+    <div class="restaurant">
+        <img src="image/cafe/water.png" alt="워터쿨러" onclick="showMap('워터쿨러', '연무동 4-36')">
+        <div class="info">
+            <h3>워터쿨러</h3>
+            <p>주소: 경기 수원시 장안구 광교산로 154-14 1층</p>
+            <p>평점: 4.83(579) 좌석이 편해서 카공하기 좋고 이야기하기도 좋은 경기대 정문 카페 쿠키가 맛있음 </p>
+            <p>영업시간 10:00-22:00 (21:30 라스트오더)</p>
+        </div>
+    </div>
+    <div class="restaurant">
+        <img src="image/cafe/nani.png" alt="나니행" onclick="showMap('나니행', '연무동 4-23')">
+        <div class="info">
+            <h3>나니행</h3>
+            <p>경기 수원시 장안구 광교산로 154-25 2층</p>
+            <p>평점: 4.7(72) 공부하기도 좋고 보드게임도 있어서 간단하게 시간 보내기 좋은 경기대 정문 카페. 사장님이 친근하시고 안에 들어가면 꽤 넓음 시험기간에는 연장영업도 하심</p>
+            <p>영업시간 10:00-22:00</p>
+        </div>
+        </div>
+    </div>
+  </main>
+  <div id="map-container" class="invisible">
+    <div id="map"></div>
+    <button id="map-quit">닫기</button>
+  </div>
+</body>
+</html>
